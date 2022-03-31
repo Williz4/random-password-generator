@@ -17,15 +17,18 @@ const randomFunc = {
 
 //event listener for the clipboard element to enable copy paste functionality
 clipboardEl.addEventListener('click', () => {
+	//we create a textarea and a password variable which points to the result's element innerText
 	const textarea = document.createElement('textarea');
 	const password = resultEl.innerText
 
+	//if there is no password then we return immediately
 	if(!password) {
 		return
 	}
 
-	textarea.value = password
-	document.body.appendChild(textarea)
+	//if the password exist we assign it to the newly created textarea and we append the textarea to the body and select it and use the execCommand to run the copy method and remove he textarea from the dom and issue an alert statement that the password has been copied
+	textarea.value = password;
+	document.body.appendChild(textarea);
 	textarea.select();
 	document.execCommand('copy');
 	textarea.remove()
@@ -63,21 +66,23 @@ function generatePassword(lower, upper, number, symbol, length) {
 	return finalPassword;
 }
 
-//function to return lowercase letters
+//function to return random lowercase letters
 function getRandomLower() {
 	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-//function to retrun uppercase letters
+//function to retrun random uppercase letters
 function getRandomUpper() {
 	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
+//function to return random number
 function getRandomNumber() {
 	return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
+//function to return random symbol
 function getRandomSymbol() {
 	const symbols = '!@#$%^&*(){}+<>/,.';
-	return symbols[Math.floor(Math.random() * symbols.length)]
+	return symbols[Math.floor(Math.random() * symbols.length)];
 }
